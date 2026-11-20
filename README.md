@@ -106,7 +106,7 @@ docker push klaus0017/flask-mongodb-app:1.0
 
 The repository is public, so Minikube can pull it without any credentials. I know that works because my pods pulled it without a pull secret.
 
-![Docker Hub page](screenshots/13-dockerhub.png)
+![Docker Hub page](screenshots/13-Dockerhub.png)
 
 Before moving to Kubernetes I tested the image with plain Docker: a Mongo container started with `MONGO_INITDB_ROOT_USERNAME` and `MONGO_INITDB_ROOT_PASSWORD`, plus the Flask container on a shared Docker network. All three endpoints worked there.
 
@@ -163,7 +163,7 @@ kubectl get hpa
 
 `mongo-pv` and `mongo-pvc` should both say `Bound`.
 
-![Cluster state](screenshots/01-cluster-state.png)
+![Cluster state](screenshots/01-cluster-state.png.png)
 
 ### 4. Reach the app from your machine
 
@@ -252,7 +252,7 @@ Having both is useful. Requests give each pod a guaranteed minimum and help plac
 
 Requests also matter for autoscaling. The HPA measures CPU as a percentage of the request, not of the node or the limit. With a 200m request, 70% means about 140m per pod, and that is exactly what `kubectl describe hpa` showed me (`70% (140m) / 70%`). Without a CPU request the HPA can't work at all.
 
-![Requests and limits](screenshots/02-resources-replicas.png)
+![Requests and limits](screenshots/02-resources-replicas.png.png)
 
 ## Design choices
 
@@ -379,7 +379,7 @@ After I removed the load, CPU dropped to about 1% almost immediately, but the re
 
 ![HPA CPU dropping after the load stopped](screenshots/12-hpa-scale-down.png)
 
-![HPA back at 2 replicas](screenshots/12b-hpa-back-to-2.png)
+![HPA back at 2 replicas](screenshots/2-replica.png)
 
 ## Issues I ran into
 
